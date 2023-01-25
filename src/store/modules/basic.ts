@@ -11,8 +11,11 @@ import { createComponent } from '@/resource/models'
 import { cloneDeep } from 'lodash-es'
 import type { ComponentDataType, DOMRectStyle } from '@/types/component'
 import type { Position } from '@/types/common'
+import SparkMd5 from 'spark-md5'
+import { useDesignMd5WithOut } from '@/store/modules/designMd5'
 
 const snapShotStore = useSnapShotStoreWithOut()
+const useDesignMd5 = useDesignMd5WithOut()
 
 const baseCanvasStyleData: CanvasStyleData = {
   width: window.screen.width,
@@ -225,8 +228,9 @@ const useBasicStore = defineStore({
     setComponentData(componentData: ComponentDataType[] = []): void {
       this.componentData = []
       componentData.forEach((item) => {
-        return this.componentData.push(createComponent(item))
+        this.componentData.push(createComponent(item))
       })
+
       this.resetComponentData(this.componentData)
       this.saveComponentData()
     },
@@ -344,8 +348,8 @@ const useBasicStore = defineStore({
       }
       const len: number = componentData.length
       if (index < len - 1 && index >= 0) {
-        const myComponments: BaseComponent[] = componentData.splice(index, 1)
-        componentData.push(myComponments[0])
+        const myComponents: BaseComponent[] = componentData.splice(index, 1)
+        componentData.push(myComponents[0])
         this.saveComponentData()
       } else {
         message.info('图层已经到顶了')
@@ -363,8 +367,8 @@ const useBasicStore = defineStore({
       }
 
       if (index > 0) {
-        const myComponments: BaseComponent[] = componentData.splice(index, 1)
-        componentData.unshift(myComponments[0])
+        const myComponents: BaseComponent[] = componentData.splice(index, 1)
+        componentData.unshift(myComponents[0])
         this.saveComponentData()
       } else {
         message.info('图层已经到底了')
@@ -399,7 +403,9 @@ const useBasicStore = defineStore({
       return rootComponent
     },
     saveComponentData() {
-      window.localStorage.setItem('canvasData', JSON.stringify(this.layoutData))
+      const canvasDataStr = JSON.stringify(this.layoutData)
+      window.localStorage.setItem('canvasData', canvasDataStr)
+      useDesignMd5.changeMd5(SparkMd5.hash(canvasDataStr))
       new Promise((resolve) => {
         resolve(snapShotStore.saveSnapshot(this.layoutData, this.canvasStyleData))
       })
