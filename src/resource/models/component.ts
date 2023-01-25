@@ -427,7 +427,7 @@ export abstract class BaseComponent {
       case DataType.STATIC:
         this.dataConfig = {
           type: DataType.STATIC,
-          requestConfig: new StaticRequestData(config.id, config.script),
+          requestConfig: new StaticRequestData(config.id, config.script, config.title),
           otherConfig: config.otherConfig || {}
         }
         break

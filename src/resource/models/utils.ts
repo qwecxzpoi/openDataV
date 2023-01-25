@@ -19,7 +19,8 @@ export function createComponent(component: ComponentDataType): any {
           const options = data.requestOptions as StaticRequestOptions
           obj.changeRequestDataConfig(DataType.STATIC, {
             id: options.dataId,
-            script: options.script
+            script: options.script,
+            title: options.title
           })
         } else if (data.type === DataType.REST) {
           const options = data.requestOptions as RestRequestOptions

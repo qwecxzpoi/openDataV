@@ -65,9 +65,10 @@ class StaticRequestData implements RequestData {
   public afterScript?: AfterScript
   public title?: string
 
-  constructor(id: string | undefined, afterScript?: AfterScript) {
+  constructor(id?: string, afterScript?: AfterScript, title?: string) {
     this.dataId = id
     this.afterScript = afterScript
+    this.title = title
   }
 
   public toJSON(): StaticRequestOptions {
