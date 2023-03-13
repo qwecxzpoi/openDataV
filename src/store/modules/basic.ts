@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
-import type { EditData, CanvasStyleData } from '@/types/storeTypes'
+import type { CanvasStyleData, EditData } from '@/types/storeTypes'
 import type { LayoutData } from '@/api/pages'
 import { EditMode } from '@/enum'
 import { calcComponentsRect, swap, toPercent, uuid } from '@/utils/utils'
@@ -11,7 +11,6 @@ import { createComponent } from '@/resource/models'
 import { cloneDeep } from 'lodash-es'
 import type { ComponentDataType, DOMRectStyle } from '@/types/component'
 import type { Position } from '@/types/common'
-import SparkMd5 from 'spark-md5'
 import { useDesignMd5WithOut } from '@/store/modules/designMd5'
 
 const snapShotStore = useSnapShotStoreWithOut()
@@ -405,7 +404,7 @@ const useBasicStore = defineStore({
     saveComponentData() {
       const canvasDataStr = JSON.stringify(this.layoutData)
       window.localStorage.setItem('canvasData', canvasDataStr)
-      useDesignMd5.changeMd5(SparkMd5.hash(canvasDataStr))
+      useDesignMd5.changeMd5(canvasDataStr)
       new Promise((resolve) => {
         resolve(snapShotStore.saveSnapshot(this.layoutData, this.canvasStyleData))
       })
@@ -467,14 +466,13 @@ const useBasicStore = defineStore({
             parentComponent.change(key, newGroupStyle[key])
           }
           parentComponent.subComponents?.forEach((el: BaseComponent) => {
-            const gStyle = {
+            el.groupStyle = {
               gleft: toPercent((el.positionStyle.left - newGroupStyle.left) / newGroupStyle.width),
               gtop: toPercent((el.positionStyle.top - newGroupStyle.top) / newGroupStyle.height),
               gwidth: toPercent(el.positionStyle.width / newGroupStyle.width),
               gheight: toPercent(el.positionStyle.height / newGroupStyle.height),
               grotate: el.positionStyle.rotate
             }
-            el.groupStyle = gStyle
           })
           if (parentComponent.parent) {
             this.resizeAutoComponent(parentComponent.parent)
