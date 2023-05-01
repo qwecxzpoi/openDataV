@@ -1,0 +1,20 @@
+{
+  "name": "@open-data-v/core",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/AnsGoo/openDataV/issues"
+  },
+  "keywords": ["big screen", "数据大屏", "low code", "低代码"],
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts"
+}

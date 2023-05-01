@@ -1,7 +1,7 @@
 import type { App } from 'vue'
 import { defineAsyncComponent } from 'vue'
 import Group from '@/components/Group'
-import type { BaseComponent } from '@/resource/models'
+import type { BaseComponent } from '@open-data-v/core'
 
 // 编辑器左侧组件列表
 const componentList: Record<string, any> = {}

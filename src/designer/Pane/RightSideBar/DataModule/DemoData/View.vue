@@ -38,8 +38,8 @@ import {
   NCard,
   NFormItem
 } from 'naive-ui'
-import type { BaseComponent, DemoRequestData } from '@/resource/models'
-import { DataType } from '@/resource/models'
+import type { BaseComponent, DemoRequestData } from '@open-data-v/core'
+import { DataType } from '@open-data-v/core'
 
 import DataView from '@/components/DataView'
 import { cloneDeep } from 'lodash-es'

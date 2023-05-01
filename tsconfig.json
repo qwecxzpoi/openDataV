@@ -27,9 +27,18 @@
     "typeRoots":["node_modules/@types", "src/types"], // 将这些文件夹下的包自动导入 TypeScript 声明
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@open-data-v/core": ["./packages/core/index.ts"],
+      "@open-data-v/core/*": ["./packages/core/*"],
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "mock/*"],
+  "include": [
+    "packages",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "mock/*"
+  ],
   "exclude": ["**/node_modules/**", "dist", "**/*.js"]
 }

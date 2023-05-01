@@ -405,7 +405,7 @@ onUnmounted( () => {
 
 ```typescript
 
-import { useData } from '@/resource/hooks'
+import { useData } from '@open-data-v/core'
 let chartData:
   | Array<{ label: string; value: number }>
   | RequestResponse<Array<{ label: string; value: number }>>['afterData'] = []

@@ -49,8 +49,8 @@ import {
   NFormItem,
   NGradientText
 } from 'naive-ui'
-import type { BaseComponent, RestRequestData } from '@/resource/models'
-import { DataType } from '@/resource/models'
+import type { BaseComponent, RestRequestData } from '@open-data-v/core'
+import { DataType } from '@open-data-v/core'
 import Rest from '@/apiView/RequestContent/rest'
 import type { RequestOption } from '@/apiView/hooks/http/type'
 import { RequestMethod } from '@/apiView/RequestContent/requestEnums'

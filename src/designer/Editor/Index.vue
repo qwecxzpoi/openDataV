@@ -64,10 +64,10 @@ import type { Position, Vector } from '@/types/common'
 import { getComponentShapeStyle } from '@/utils/utils'
 import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { useCopyStoreWithOut } from '@/store/modules/copy'
-import type { BaseComponent } from '@/resource/models'
-import { createComponent } from '@/resource/models'
+import type { BaseComponent } from '@open-data-v/core'
+import { createComponent } from '@open-data-v/core'
 import { componentList } from '../load'
-import { DataIntegrationMode } from '@/resource/models/data'
+import { DataIntegrationMode } from '@open-data-v/core/data'
 import { backgroundToCss } from '@/utils/utils'
 
 const basicStore = useBasicStoreWithOut()
