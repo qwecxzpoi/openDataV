@@ -3,21 +3,21 @@
     <div class="tool-bar">
       <slot name="tool-bar"> </slot>
     </div>
-    <div class="main" :style="{ maxHeight: config.height }">
+    <div class="main" :style="{ maxHeight: config!.height }">
       <codemirror
-        :model-value="code"
+        :model-value="code!"
         :style="{
           width: '100%',
-          height: config.height,
+          height: config!.height,
           backgroundColor: '#fff',
           color: '#333'
         }"
         placeholder="Please enter the code."
         :extensions="extensions"
-        :autofocus="config.autofocus"
-        :disabled="config.disabled"
-        :indent-with-tab="config.indentWithTab"
-        :tab-size="config.tabSize"
+        :autofocus="config!.autofocus"
+        :disabled="config!.disabled"
+        :indent-with-tab="config!.indentWithTab"
+        :tab-size="config!.tabSize"
         @ready="handleReady"
         @focus="log('focus', $event)"
         @blur="log('blur', $event)"

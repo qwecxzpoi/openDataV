@@ -45,7 +45,7 @@ import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 /* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import CodeEditor from '@/components/CodeEditor'
 import type { CodemirrorOption } from '@/components/CodeEditor/type'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import type { AfterScript } from '@/types/component'
 
 const projectStore = useProjectSettingStoreWithOut()

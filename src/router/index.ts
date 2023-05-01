@@ -5,7 +5,7 @@ import type {
   NavigationGuardNext
 } from 'vue-router'
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
-import { LOGIN_URL, NoAuth, RouteMode } from '@/enum'
+import { LOGIN_URL, NoAuth, RouteMode } from '@open-data-v/core'
 import type { AppRouteRecordRaw, MenuType } from './types'
 import NProgress from '@/utils/progress'
 import { useUserStoreWithOut } from '@/store/modules/user'

@@ -30,7 +30,7 @@ import { eventBus, StaticKey } from '@/bus'
 import { onMounted, ref } from 'vue'
 import { getAfterScriptListApi } from '@/api/data/afterScript'
 import type { AfterScriptDetail } from '@/api/data/type'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 
 const dataList = ref<AfterScriptDetail[]>([])
 const loadStaticList = async () => {

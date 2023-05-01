@@ -1,0 +1,26 @@
+{
+  "name": "@open-data-v/tabs",
+  "version": "1.0.0",
+  "description": "Tabs组件",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
+  "scripts": {
+  },
+  "keywords": [
+    "OpenDataV"
+  ],
+  "author": "chenghaiwen",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@open-data-v/core": "workspace:*"
+  }
+}

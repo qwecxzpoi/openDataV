@@ -1,6 +1,7 @@
-import { ComponentGroup } from '@/enum'
+import { ComponentGroup } from '@open-data-v/core'
 import { BaseComponent } from '@open-data-v/core'
 
+console.log(BaseComponent)
 export const componentName = 'Group'
 class GroupComponent extends BaseComponent {
   show = false

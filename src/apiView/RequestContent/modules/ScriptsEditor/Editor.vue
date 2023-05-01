@@ -67,7 +67,7 @@ import type { SelectOption } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import type { AfterScript } from '@/types/component'
 import { message } from '@/utils/message'
 import {

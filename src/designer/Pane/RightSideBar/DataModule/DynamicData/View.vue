@@ -55,7 +55,7 @@ import Rest from '@/apiView/RequestContent/rest'
 import type { RequestOption } from '@/apiView/hooks/http/type'
 import { RequestMethod } from '@/apiView/RequestContent/requestEnums'
 import { uuid } from '@/utils/utils'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import { requestOptionsToStore, storeOptionToRequestOptions } from '@/apiView/hooks/http/utils'
 import { message } from '@/utils/message'
 const props = defineProps<{

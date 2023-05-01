@@ -2,6 +2,7 @@ import type { App } from 'vue'
 import { defineAsyncComponent } from 'vue'
 import Group from '@/components/Group'
 import type { BaseComponent } from '@open-data-v/core'
+import { componentMap } from '@/designer/componentMap'
 
 // 编辑器左侧组件列表
 const componentList: Record<string, any> = {}
@@ -13,9 +14,8 @@ const AsyncComponent = {
     const AsyncComp = defineAsyncComponent(Group.component)
     app.component(Group.componentName, AsyncComp)
 
-    const moduleFilesTs: any = import.meta.glob('../resource/components/**/index.ts', {
-      eager: true
-    })
+    const moduleFilesTs: any = componentMap
+    console.log(moduleFilesTs)
     Object.keys(moduleFilesTs).forEach((key: string) => {
       const componentOptions = moduleFilesTs[key]?.default
 

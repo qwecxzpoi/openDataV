@@ -27,7 +27,7 @@
         :id="'shape' + item.id"
         :defaultStyle="item.style"
         :style="getShapeStyle(item.style)"
-        :active="item.id === (curComponent || {}).id"
+        :active="item.id === curComponent?.id"
         :info="item"
         :class="{ lock: item.locked }"
         :index="index"
@@ -59,7 +59,7 @@ import Shape from '@/designer/Editor/Shape'
 import { filterStyle, uuid } from '@/utils/utils'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useComposeStoreWithOut } from '@/store/modules/compose'
-import { EditMode } from '@/enum'
+import { EditMode } from '@open-data-v/core'
 import type { Position, Vector } from '@/types/common'
 import { getComponentShapeStyle } from '@/utils/utils'
 import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
@@ -67,7 +67,7 @@ import { useCopyStoreWithOut } from '@/store/modules/copy'
 import type { BaseComponent } from '@open-data-v/core'
 import { createComponent } from '@open-data-v/core'
 import { componentList } from '../load'
-import { DataIntegrationMode } from '@open-data-v/core/data'
+import { DataIntegrationMode } from '@open-data-v/core'
 import { backgroundToCss } from '@/utils/utils'
 
 const basicStore = useBasicStoreWithOut()

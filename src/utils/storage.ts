@@ -1,4 +1,4 @@
-import { TokenStorage } from '@/enum'
+import { TokenStorage } from '@open-data-v/core'
 
 /**
  * 设置键值对

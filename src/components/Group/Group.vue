@@ -17,7 +17,7 @@
         :id="'shape' + item.id"
         :defaultStyle="item.style"
         :style="getShapeStyle(item)"
-        :active="item.id === (curComponent || {}).id"
+        :active="item.id === curComponent?.id"
         :info="item"
         :class="{ lock: item.locked }"
         :isInner="true"

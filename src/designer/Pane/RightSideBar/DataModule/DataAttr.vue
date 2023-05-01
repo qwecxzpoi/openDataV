@@ -32,7 +32,7 @@ import StaticData from './StaticData'
 import DynamicData from './DynamicData'
 import DemoData from './DemoData'
 import { onMounted, reactive, ref, watch } from 'vue'
-import { DataIntegrationMode } from '@open-data-v/core/data'
+import { DataIntegrationMode } from '@open-data-v/core'
 
 const props = defineProps<{
   curComponent: BaseComponent

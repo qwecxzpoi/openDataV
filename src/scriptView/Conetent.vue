@@ -56,7 +56,7 @@ import {
 } from '@/api/data/afterScript'
 import { makeFunction } from '@/utils/data'
 import type { AfterScriptDetail } from '@/api/data/type'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import type { AfterScript } from '@/types/component'
 
 const config = ref({

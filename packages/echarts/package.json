@@ -1,8 +1,7 @@
 {
-  "name": "@open-core-v/echarts",
+  "name": "@open-data-v/echarts",
   "version": "1.0.0",
   "description": "echarts组件",
-  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,5 +12,16 @@
     "@open-data-v/core": "workspace:*",
     "echarts": "^5.3.3",
     "echarts-liquidfill": "^3.1.0"
-  }
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts"
 }

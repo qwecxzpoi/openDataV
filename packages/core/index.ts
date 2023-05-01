@@ -1,3 +1,4 @@
-export * from './models'
-export * from './hooks'
+export * from './src/models'
+export * from './src/hooks'
+export * from './src/enum'
 export * from './types'

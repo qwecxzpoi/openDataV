@@ -23,7 +23,7 @@
 import { ref, onMounted } from 'vue'
 import type { SelectOption } from 'naive-ui'
 import { NSpace, NSelect, NColorPicker } from 'naive-ui'
-import { GlobalColorSwatches } from '@/enum'
+import { GlobalColorSwatches } from '@open-data-v/core'
 import LinearGradient from '../linearGradient'
 import type { Gradient } from '../linearGradient/type'
 import type { BackgroundImage, BackgroundColor } from '@/types/common'

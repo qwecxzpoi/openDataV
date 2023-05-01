@@ -1,8 +1,7 @@
 {
-  "name": "decoration5",
+  "name": "@open-data-v/decoration",
   "version": "1.0.0",
   "description": "装饰",
-  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +10,16 @@
   "dependencies": {
     "@open-data-v/core": "workspace:*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts"
 }

@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang="ts">
-import { ComponentGroupList } from '@/enum'
+import { ComponentGroupList } from '@open-data-v/core'
 import { componentList } from '@/designer/load'
 import { computed, h } from 'vue'
 import { NMenu } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 import ComponentItem from './ComponentItem.vue'
-import type { GroupType } from '@/enum'
+import type { GroupType } from '@open-data-v/core'
 import { XIcon } from '@/plugins/xicon'
 import type { BaseComponent } from '@open-data-v/core'
 

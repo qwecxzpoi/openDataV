@@ -1,4 +1,4 @@
-import { ComponentGroup } from '@/enum'
+import { ComponentGroup } from '@open-data-v/core'
 import { BaseComponent } from '@open-data-v/core'
 import { DataIntegrationMode } from '@open-data-v/core/data'
 

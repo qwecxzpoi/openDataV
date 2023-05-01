@@ -1,8 +1,18 @@
 {
-  "name": "scrolltable",
+  "name": "@open-data-v/scrolltable",
   "version": "1.0.0",
   "description": "OpenDataV滚动表格",
-  "main": "ScrollTable/index.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "./index.cjs",
+  "module": "./index.mjs",
+  "types": "./index.d.ts",
   "scripts": {},
   "keywords": [
     "OpenDataV"

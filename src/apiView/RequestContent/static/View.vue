@@ -38,7 +38,7 @@
       </n-tab-pane>
       <n-tab-pane name="scripts" tab="脚本" display-directive="show">
         <ScriptsEdtor
-          :data="options.script"
+          :data="options!.script"
           class="content"
           :mode="mode"
           @update:data="scriptChangeHandler"
@@ -52,7 +52,7 @@
 import { onMounted, reactive, ref, watch } from 'vue'
 import { NTabs, NTabPane, NCard, NSelect, NSpace, NButtonGroup, NButton, NInput } from 'naive-ui'
 import type { SelectOption } from 'naive-ui'
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import ScriptsEdtor from '../modules/ScriptsEditor'
 import DataView from '@/components/DataView'
 import StaticDataView from '@/components/StaticDataView'

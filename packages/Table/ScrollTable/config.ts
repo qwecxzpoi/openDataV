@@ -1,5 +1,5 @@
 import { shallowRef, h } from 'vue'
-import { ComponentGroup, FormType } from '@/enum'
+import { ComponentGroup, FormType } from '@open-data-v/core'
 import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@open-data-v/core'
 import ScrollTableForm from './Form.vue'

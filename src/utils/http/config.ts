@@ -1,4 +1,4 @@
-import { ContentTypeEnum } from '@/enum'
+import { ContentTypeEnum } from '@open-data-v/core'
 import type { AxiosRequestConfig, Canceler } from 'axios'
 
 /**

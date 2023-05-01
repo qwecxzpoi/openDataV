@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import store from '@/store'
 import type { EditData, CanvasStyleData } from '@/types/storeTypes'
 import type { LayoutData } from '@/api/pages'
-import { EditMode } from '@/enum'
+import { EditMode } from '@open-data-v/core'
 import { calcComponentsRect, swap, toPercent, uuid } from '@/utils/utils'
 import { message } from '@/utils/message'
 import { useSnapShotStoreWithOut } from './snapshot'
@@ -220,12 +220,12 @@ const useBasicStore = defineStore({
     },
     /**
      * 设置画图的组件数据
-     * @param componentData
+     * @param compList
      */
-    setComponentData(componentData: ComponentDataType[] = []): void {
+    setComponentData(compList: ComponentDataType[] = []): void {
       this.componentData = []
-      componentData.forEach((item) => {
-        return this.componentData.push(createComponent(item))
+      compList.forEach((item) => {
+        this.componentData.push(createComponent(item))
       })
       this.resetComponentData(this.componentData)
       this.saveComponentData()

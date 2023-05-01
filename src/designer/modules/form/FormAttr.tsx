@@ -6,7 +6,7 @@ import LinearGradient from '../linearGradient'
 import ArrayItem from '../arrayItem'
 import CustomItem from '../customItem'
 import BackItem from '../backItem'
-import { FormType, GlobalColorSwatches } from '@/enum'
+import { FormType, GlobalColorSwatches } from '@open-data-v/core'
 import type {
   AttrType,
   CustomFormSchema,

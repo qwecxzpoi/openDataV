@@ -1,4 +1,4 @@
-import { ScriptType } from '@/enum'
+import { ScriptType } from '@open-data-v/core'
 import { notification } from '../message'
 import type { CallbackType } from './type'
 

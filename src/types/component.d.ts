@@ -1,4 +1,4 @@
-import type { FormType, ComponentGroup, ScriptType } from '@/enum'
+import type { FormType, ComponentGroup, ScriptType } from '@open-data-v/core'
 import type { CanvasStyleData } from '@/types/storeTypes'
 import type { DataIntegrationMode } from '@open-data-v/core/data'
 import type { DataType, StaticRequestOptions, RestRequestOptions } from '@open-data-v/core/data'
