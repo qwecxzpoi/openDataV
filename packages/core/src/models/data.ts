@@ -6,7 +6,7 @@ import type { StoreRequestOption } from '@/apiView/hooks/http/type'
 import type { AfterScript } from '@/types/component'
 import { makeFunction } from '@/utils/data'
 import { cloneDeep } from 'lodash-es'
-import type { RequestResponse } from '../types'
+import type { RequestResponse } from '../../types'
 
 export enum DataType {
   STATIC = 'STATIC',

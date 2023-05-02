@@ -5,7 +5,12 @@
   "bugs": {
     "url": "https://github.com/AnsGoo/openDataV/issues"
   },
-  "keywords": ["big screen", "数据大屏", "low code", "低代码"],
+  "keywords": [
+    "big screen",
+    "数据大屏",
+    "low code",
+    "低代码"
+  ],
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -17,11 +22,14 @@
   "main": "./index.cjs",
   "module": "./index.mjs",
   "types": "./index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "//build": "pnpm unbuild",
     "//stub": "pnpm unbuild --stub"
   },
-  "dependencies": {
+  "devDependencies": {
+    "@types/node": "16"
   }
 }

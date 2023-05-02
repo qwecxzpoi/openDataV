@@ -295,7 +295,11 @@ importers:
         specifier: ^1.6.2
         version: 1.6.2
 
-  packages/core: {}
+  packages/core:
+    devDependencies:
+      '@types/node':
+        specifier: '16'
+        version: 16.18.21
 
   packages/echarts:
     dependencies:

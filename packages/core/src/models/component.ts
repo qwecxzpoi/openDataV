@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash-es'
-import type { ComponentGroup } from '@open-data-v/core'
-import { FormType } from '@open-data-v/core'
+import type { ComponentGroup } from '../enum'
+import { FormType } from '../enum'
 import { mod360, rotatePoint, uuid } from '@/utils/utils'
 import type {
   ComponentDataType,
