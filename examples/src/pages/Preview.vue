@@ -28,6 +28,10 @@ const scriptState = useScriptState()
 scriptState.loadPlugins([CustomScriptPlugin, SystemScriptPlugin])
 
 onMounted(async () => {
+  // 预览页面使用最新的快照，不区分页面ID
+  // 这里可以根据需要修改为特定页面的快照
+  snapShotState.setCurrentPageId('unsaved') // 或者从URL参数获取页面ID
+
   const snapshot = await snapShotState.latestRecord()
   if (snapshot) {
     viewer.value!.setLayoutData({

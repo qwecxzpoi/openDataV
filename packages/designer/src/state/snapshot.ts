@@ -16,6 +16,11 @@ class SnapshotState {
     cursor: 0
   })
 
+  // 当前页面ID
+  private currentPageId: string = 'unsaved'
+  // 每个页面的游标
+  private pageCursors: Map<string, number> = new Map()
+
   get latestSnapshot(): StoreComponentData | undefined {
     return this.state.latestSnapshot
   }
@@ -37,13 +42,32 @@ class SnapshotState {
     this.state.snapshotMax = snapshotMax
   }
   get cursor(): number {
-    return this.state.cursor
+    return this.pageCursors.get(this.currentPageId) || 0
   }
   set cursor(cursor: number) {
+    this.pageCursors.set(this.currentPageId, cursor)
     this.state.cursor = cursor
   }
+
+  /**
+   * 设置当前页面ID
+   * @param pageId 页面ID
+   */
+  setCurrentPageId(pageId: string) {
+    this.currentPageId = pageId || 'unsaved'
+  }
+
+  /**
+   * 获取当前页面ID
+   */
+  getCurrentPageId(): string {
+    return this.currentPageId
+  }
   async latestRecord() {
-    return snapshotDb.snapshot.orderBy('id').last()
+    return snapshotDb.snapshot
+      .where('pageId')
+      .equals(this.currentPageId)
+      .last()
   }
   /**
    * 上一次记录
@@ -52,9 +76,21 @@ class SnapshotState {
   async lastRecord() {
     let snapshot: StoreComponentData | undefined
     if (this.cursor) {
-      snapshot = await snapshotDb.snapshot.get(this.cursor - 1)
+      // 查找当前页面的上一个快照
+      const snapshots = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .and(item => item.id! < this.cursor)
+        .reverse()
+        .limit(1)
+        .toArray()
+      snapshot = snapshots[0]
     } else {
-      snapshot = await snapshotDb.snapshot.orderBy('id').last()
+      // 获取当前页面的最新快照
+      snapshot = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .last()
     }
     if (snapshot) {
       this.cursor = snapshot.id!
@@ -69,9 +105,20 @@ class SnapshotState {
   async nextRecord() {
     let snapshot: StoreComponentData | undefined
     if (this.cursor) {
-      snapshot = await snapshotDb.snapshot.get(this.cursor + 1)
+      // 查找当前页面的下一个快照
+      const snapshots = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .and(item => item.id! > this.cursor)
+        .limit(1)
+        .toArray()
+      snapshot = snapshots[0]
     } else {
-      snapshot = await snapshotDb.snapshot.orderBy('id').last()
+      // 获取当前页面的最新快照
+      snapshot = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .last()
     }
     if (snapshot) {
       this.cursor = snapshot.id!
@@ -83,6 +130,7 @@ class SnapshotState {
    * 记录快照
    * @param canvasData 组件数据
    * @param canvasStyle 画布样式
+   * @param dataSlotters 数据插槽
    */
   recordSnapshot(
     canvasData: Array<CustomComponent>,
@@ -93,17 +141,30 @@ class SnapshotState {
     this.latestSnapshot = {
       canvasData: cloneDeep(canvasData),
       canvasStyle: cloneDeep(canvasStyle),
-      dataSlotters: cloneDeep(dataSlotters)
+      dataSlotters: cloneDeep(dataSlotters),
+      pageId: this.currentPageId // 添加页面ID
     }
     snapshotDb.snapshot.add(cloneDeep(this.latestSnapshot)).then(async (_) => {
-      const count: number = await snapshotDb.snapshot.count()
+      // 检查当前页面的快照数量
+      const count: number = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .count()
+
       if (count > this.snapshotMax) {
+        // 删除当前页面最旧的快照
         const snapshot: StoreComponentData = (await snapshotDb.snapshot
-          .orderBy('id')
+          .where('pageId')
+          .equals(this.currentPageId)
           .first()) as StoreComponentData
         await snapshotDb.snapshot.delete(snapshot!.id!)
       }
-      const snapshot = await snapshotDb.snapshot.orderBy('id').last()
+
+      // 获取当前页面的最新快照
+      const snapshot = await snapshotDb.snapshot
+        .where('pageId')
+        .equals(this.currentPageId)
+        .last()
       if (snapshot) {
         this.cursor = snapshot.id!
       }
@@ -112,10 +173,26 @@ class SnapshotState {
   }
   /**
    * 清空快照
+   * @param pageId 可选的页面ID，如果不提供则清空当前页面的快照
    */
-  async clearSnapshot() {
-    await snapshotDb.snapshot.clear()
-    this.latestSnapshot = undefined
+  async clearSnapshot(pageId?: string) {
+    const targetPageId = pageId || this.currentPageId
+    if (targetPageId === 'all') {
+      // 清空所有快照
+      await snapshotDb.snapshot.clear()
+      this.pageCursors.clear()
+    } else {
+      // 清空指定页面的快照
+      await snapshotDb.snapshot
+        .where('pageId')
+        .equals(targetPageId)
+        .delete()
+      this.pageCursors.delete(targetPageId)
+    }
+
+    if (targetPageId === this.currentPageId || targetPageId === 'all') {
+      this.latestSnapshot = undefined
+    }
   }
   /**
    * 保存记录
