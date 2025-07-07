@@ -156,6 +156,8 @@ class CanvasState {
   > = new Map()
 
   private componentMap: Map<string, BaseComponent> = new Map()
+  private currentPageId: string = 'unsaved'
+
   constructor(config?: CanvasStyleConfig) {
     const extraStyles = config
       ? config
@@ -181,6 +183,34 @@ class CanvasState {
   }
   set darkTheme(isDark: boolean) {
     this.state.darkTheme = isDark
+  }
+
+  /**
+   * 设置当前页面ID
+   * @param pageId 页面ID
+   */
+  setCurrentPageId(pageId: string) {
+    this.currentPageId = pageId || 'unsaved'
+    // 同时更新快照状态的页面ID
+    snapShotState.setCurrentPageId(this.currentPageId)
+  }
+
+  /**
+   * 获取当前页面ID
+   */
+  getCurrentPageId(): string {
+    return this.currentPageId
+  }
+
+  /**
+   * 切换页面时的清理工作
+   * @param newPageId 新页面ID
+   */
+  switchPage(newPageId: string) {
+    // 如果页面ID发生变化，更新当前页面ID
+    if (this.currentPageId !== newPageId) {
+      this.setCurrentPageId(newPageId)
+    }
   }
 
   get components() {

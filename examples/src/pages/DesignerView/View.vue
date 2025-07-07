@@ -73,6 +73,9 @@ const settingStore = useProjectSettingStoreWithOut()
 
 onMounted(async () => {
   const index = route.params.index as string
+  // 设置当前页面ID
+  canvasState.setCurrentPageId(index || 'unsaved')
+
   if (index) {
     await restore(index)
   }
@@ -83,6 +86,8 @@ const restore = async (index: string) => {
   if (!resp.data) {
     return
   }
+  // 确保页面ID已设置
+  canvasState.setCurrentPageId(index)
   designer.value!.setLayoutData(resp.data)
 }
 

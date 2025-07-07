@@ -5,6 +5,7 @@ import type { ComponentData } from './type'
 
 export interface StoreComponentData extends ComponentData {
   id?: number
+  pageId?: string // 添加页面ID字段
 }
 
 export class SnapShotDexie extends Dexie {
@@ -12,8 +13,13 @@ export class SnapShotDexie extends Dexie {
 
   constructor() {
     super('snapshot')
+    // 版本1：原始结构
     this.version(1).stores({
-      snapshot: '++id, canvasData, canvasStyle, dataSlotters' // Primary key and indexed props
+      snapshot: '++id, canvasData, canvasStyle, dataSlotters'
+    })
+    // 版本2：添加pageId索引
+    this.version(2).stores({
+      snapshot: '++id, canvasData, canvasStyle, dataSlotters, pageId'
     })
   }
 }
